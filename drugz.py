@@ -459,8 +459,7 @@ def drugZ_analysis(args):
             fold_change = fold_change.loc[:,~fold_change.columns.duplicated()]
 
         if args.fc_outfile:
-            with args.fc_outfile as fold_change_file:
-                fold_change.to_csv(fold_change_file, sep='\t', float_format='%4.3f')
+            fold_change.to_csv(args.fc_outfile, sep="\t", float_format="%4.3f")
 
         log_.info('Caculating gene-level Zscores')
         gene_normZ = calculate_drugz_score(fold_change=fold_change, min_observations=1, columns=fc_zscore_ids)
